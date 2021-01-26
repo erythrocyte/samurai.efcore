@@ -11,7 +11,8 @@ namespace SamuraiApp.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connectionString = "Data Source=(localdb)\\MSSQLLocalDB; Initial Catalog = SamuraiAppData";
+            var connectionString =
+            "Server=localhost;Database=SamuraiAppData;User=SA;Password=Samurai_01";
             optionsBuilder.UseSqlServer(connectionString);
         }
     }
