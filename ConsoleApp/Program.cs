@@ -13,15 +13,15 @@ namespace ConsoleApp
         {
             context.Database.EnsureCreated();
             GetSamurais("Before add:");
-            AddSamurai();
+            AddSamurai("Michael");
             GetSamurais("After add:");
             Console.WriteLine("press any key");
-            Console.ReadKey();
+            Console.Read();
         }
 
-        private static void AddSamurai()
+        private static void AddSamurai(string name)
         {
-            var samurai = new Samurai { Name = "Julie" };
+            var samurai = new Samurai { Name = name };
             context.Samurais.Add(samurai);
             context.SaveChanges();
         }
