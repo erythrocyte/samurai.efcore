@@ -10,7 +10,7 @@ using SamuraiApp.Data;
 namespace SamuraiApp.Data.Migrations
 {
     [DbContext(typeof(SamuraiContext))]
-    [Migration("20210127184037_init")]
+    [Migration("20210127185904_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
