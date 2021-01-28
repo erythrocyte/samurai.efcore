@@ -19,61 +19,6 @@ namespace SamuraiApp.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.2");
 
-            modelBuilder.Entity("SamuraiApp.Data.Clan", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("ClanName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Clans");
-                });
-
-            modelBuilder.Entity("SamuraiApp.Data.Quote", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("SamuraiId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Text")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SamuraiId");
-
-                    b.ToTable("Quotes");
-                });
-
-            modelBuilder.Entity("SamuraiApp.Data.Samurai", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int?>("ClanId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClanId");
-
-                    b.ToTable("Samurais");
-                });
-
             modelBuilder.Entity("SamuraiApp.Domain.Battle", b =>
                 {
                     b.Property<int>("Id")
@@ -107,7 +52,7 @@ namespace SamuraiApp.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clan");
+                    b.ToTable("Clans");
                 });
 
             modelBuilder.Entity("SamuraiApp.Domain.Horse", b =>
@@ -148,7 +93,7 @@ namespace SamuraiApp.Data.Migrations
 
                     b.HasIndex("SamuraiId");
 
-                    b.ToTable("Quote");
+                    b.ToTable("Quotes");
                 });
 
             modelBuilder.Entity("SamuraiApp.Domain.Samurai", b =>
@@ -168,7 +113,7 @@ namespace SamuraiApp.Data.Migrations
 
                     b.HasIndex("ClanId");
 
-                    b.ToTable("Samurai");
+                    b.ToTable("Samurais");
                 });
 
             modelBuilder.Entity("SamuraiApp.Domain.SamuraiBattle", b =>
@@ -184,26 +129,6 @@ namespace SamuraiApp.Data.Migrations
                     b.HasIndex("BattleId");
 
                     b.ToTable("SamuraiBattle");
-                });
-
-            modelBuilder.Entity("SamuraiApp.Data.Quote", b =>
-                {
-                    b.HasOne("SamuraiApp.Data.Samurai", "Samurai")
-                        .WithMany("Quotes")
-                        .HasForeignKey("SamuraiId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Samurai");
-                });
-
-            modelBuilder.Entity("SamuraiApp.Data.Samurai", b =>
-                {
-                    b.HasOne("SamuraiApp.Data.Clan", "Clan")
-                        .WithMany("Samurais")
-                        .HasForeignKey("ClanId");
-
-                    b.Navigation("Clan");
                 });
 
             modelBuilder.Entity("SamuraiApp.Domain.Horse", b =>
@@ -252,16 +177,6 @@ namespace SamuraiApp.Data.Migrations
                     b.Navigation("Battle");
 
                     b.Navigation("Samurai");
-                });
-
-            modelBuilder.Entity("SamuraiApp.Data.Clan", b =>
-                {
-                    b.Navigation("Samurais");
-                });
-
-            modelBuilder.Entity("SamuraiApp.Data.Samurai", b =>
-                {
-                    b.Navigation("Quotes");
                 });
 
             modelBuilder.Entity("SamuraiApp.Domain.Battle", b =>
