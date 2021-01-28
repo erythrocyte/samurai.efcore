@@ -23,7 +23,7 @@ namespace SamuraiApp.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Clan",
+                name: "Clans",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -32,11 +32,11 @@ namespace SamuraiApp.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Clan", x => x.Id);
+                    table.PrimaryKey("PK_Clans", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Samurai",
+                name: "Samurais",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -46,11 +46,11 @@ namespace SamuraiApp.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Samurai", x => x.Id);
+                    table.PrimaryKey("PK_Samurais", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Samurai_Clan_ClanId",
+                        name: "FK_Samurais_Clans_ClanId",
                         column: x => x.ClanId,
-                        principalTable: "Clan",
+                        principalTable: "Clans",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -68,15 +68,15 @@ namespace SamuraiApp.Data.Migrations
                 {
                     table.PrimaryKey("PK_Horses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Horses_Samurai_SamuraiId",
+                        name: "FK_Horses_Samurais_SamuraiId",
                         column: x => x.SamuraiId,
-                        principalTable: "Samurai",
+                        principalTable: "Samurais",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Quote",
+                name: "Quotes",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -86,11 +86,11 @@ namespace SamuraiApp.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Quote", x => x.Id);
+                    table.PrimaryKey("PK_Quotes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Quote_Samurai_SamuraiId",
+                        name: "FK_Quotes_Samurais_SamuraiId",
                         column: x => x.SamuraiId,
-                        principalTable: "Samurai",
+                        principalTable: "Samurais",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -112,9 +112,9 @@ namespace SamuraiApp.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_SamuraiBattle_Samurai_SamuraiId",
+                        name: "FK_SamuraiBattle_Samurais_SamuraiId",
                         column: x => x.SamuraiId,
-                        principalTable: "Samurai",
+                        principalTable: "Samurais",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -126,19 +126,19 @@ namespace SamuraiApp.Data.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Quote_SamuraiId",
-                table: "Quote",
+                name: "IX_Quotes_SamuraiId",
+                table: "Quotes",
                 column: "SamuraiId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Samurai_ClanId",
-                table: "Samurai",
-                column: "ClanId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SamuraiBattle_BattleId",
                 table: "SamuraiBattle",
                 column: "BattleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Samurais_ClanId",
+                table: "Samurais",
+                column: "ClanId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -147,7 +147,7 @@ namespace SamuraiApp.Data.Migrations
                 name: "Horses");
 
             migrationBuilder.DropTable(
-                name: "Quote");
+                name: "Quotes");
 
             migrationBuilder.DropTable(
                 name: "SamuraiBattle");
@@ -156,10 +156,10 @@ namespace SamuraiApp.Data.Migrations
                 name: "Battle");
 
             migrationBuilder.DropTable(
-                name: "Samurai");
+                name: "Samurais");
 
             migrationBuilder.DropTable(
-                name: "Clan");
+                name: "Clans");
         }
     }
 }
