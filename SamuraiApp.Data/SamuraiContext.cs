@@ -15,5 +15,11 @@ namespace SamuraiApp.Data
             "Server=localhost;Database=SamuraiAppData;User=SA;Password=Samurai_01";
             optionsBuilder.UseSqlServer(connectionString);
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<SamuraiBattle>().HasKey(s => new {s.SamuraiId, s.BattleId});
+            modelBuilder.Entity<Horse>().ToTable("Horses");
+        }
     }
 }
