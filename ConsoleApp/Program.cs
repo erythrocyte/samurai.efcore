@@ -6,6 +6,7 @@ using System.Linq;
 using SamuraiApp.Data;
 using SamuraiApp.Domain;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace ConsoleApp
 {
@@ -21,6 +22,8 @@ namespace ConsoleApp
             // QueryFilters();
             // RetrieveAndUpdateSamurai();
             // InsertBattle();
+            // InsertNewSamuraiWithAQuote();
+            InsertNewSamuraiWithMultipleQuotes();
             Console.WriteLine("press any key");
             Console.Read();
         }
@@ -95,7 +98,7 @@ namespace ConsoleApp
             });
             _context.SaveChanges();
         }
-    
+
         private static void QueryAndUpdateBattle_Disconnected()
         {
             var battle = _context.Battles.AsNoTracking().FirstOrDefault();
@@ -105,6 +108,37 @@ namespace ConsoleApp
                 newContextInstance.Battles.Update(battle);
                 newContextInstance.SaveChanges();
             }
+        }
+
+        private static void InsertNewSamuraiWithAQuote()
+        {
+            var samurai = new Samurai
+            {
+                Name = "Kambei Shimada",
+                Quotes = new List<Quote>
+                {
+                    new Quote{Text = "I've come to save you"}
+                }
+            };
+
+            _context.Samurais.Add(samurai);
+            _context.SaveChanges();
+        }
+
+        private static void InsertNewSamuraiWithMultipleQuotes()
+        {
+            var samurai = new Samurai
+            {
+                Name = "Suzuki",
+                Quotes = new List<Quote>
+                {
+                    new Quote{Text = "Quote1"},
+                    new Quote{Text = "Quote2"},
+                }
+            };
+
+            _context.Samurais.Add(samurai);
+            _context.SaveChanges();
         }
     }
 }
