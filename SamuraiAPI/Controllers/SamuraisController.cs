@@ -60,7 +60,13 @@ namespace SamuraiAPI.Controllers
                 {
                     return NotFound();
                 }
+                else
+                {
+                    throw;
+                }
             }
+
+            return NoContent();
         }
 
         [HttpPost]
