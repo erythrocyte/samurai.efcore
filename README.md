@@ -1,2 +1,3 @@
-# efcore_getstart
-from pluralsight tutorial
+# efcore
+
+Tutorial exercises 
